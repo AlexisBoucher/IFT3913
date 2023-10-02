@@ -1,5 +1,4 @@
 //look in jfreechart directory and print all relatives path of java test file
-
 package com.ift3913;
 
 
@@ -13,10 +12,22 @@ import java.util.stream.Stream;
 
 public class tls {
     public static void main(String[] args) throws IOException {
+        String directory ="";
+        try {
+            directory = args[0];
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            System.out.println("One or more argument missing");
+            System.exit(1);
+        }
 
-        Path path = Paths.get("..\\jfreechart");
+        Path path = Paths.get(directory);
         List<Path> paths = findJavaTestFile(path, ".java");
-        paths.forEach(System.out::println);
+        for (Path file: paths){
+            String relativePath = file.toString().substring(directory.length());
+            System.out.println(relativePath+", "
+                    +file.getFileName()+", "
+                    +"tloc, tassert, tcmp");
+        }
 
     }
 
