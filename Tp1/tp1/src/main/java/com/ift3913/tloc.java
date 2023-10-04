@@ -3,14 +3,11 @@ package com.ift3913;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.List;
 
+ /*Tloc : cette classe affiche le nombre de lignes de code non-vides qui ne sont pas de commentaires dans un fichier. Il doit juste sortir la valeur du TLOC à
+la ligne de commandes */
 public class tloc {
-     /*Tloc : cette classe affiche le nombre de lignes de code non-vides qui ne sont pas de commentaires dans un fichier. Il doit juste sortir la valeur du TLOC à
-     la ligne de commandes */
-
+    
     public static void main(String[] args) {
         if (args.length != 1) {
             System.exit(1);
@@ -21,6 +18,11 @@ public class tloc {
         System.out.println("TLOC : " + tloc);
     }
 
+    /**
+     * 
+     * @param dir
+     * @return tloc:nombre de ligne de code excluant les commentaires
+     */
     public static int calcul_tloc (String dir) {
         System.out.println(dir);
         int tloc = 0;
@@ -31,7 +33,7 @@ public class tloc {
 
             while ((file_line = file_reader.readLine()) != null) { 
                 file_line = file_line.trim();
-
+                
                 if (file_line.isEmpty()) {
                     continue;
                 }
@@ -62,8 +64,6 @@ public class tloc {
             System.err.println("Error while reading file: " + e.getMessage());
             System.exit(1);
         }
-        System.out.println(tloc);
-
         return tloc;
     }
 }
