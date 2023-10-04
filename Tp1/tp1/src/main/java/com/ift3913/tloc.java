@@ -6,39 +6,30 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-import com.ift3913.tls;
 
 public class tloc {
      /*Tloc : cette classe affiche le nombre de lignes de code non-vides qui ne sont pas de commentaires dans un fichier. Il doit juste sortir la valeur du TLOC à
      la ligne de commandes */
 
-    /*public static void main(String[] args) throws IOException {
-        
-        String directory ="";
-        try {
-            directory = args[0];
-        } catch (ArrayIndexOutOfBoundsException ex) {
-            System.out.println("One or more argument missing");
+    public static void main(String[] args) {
+        if (args.length != 1) {
             System.exit(1);
         }
+    
+        String filePath = args[0];
+        int tloc = calcul_tloc(filePath);
+        System.out.println("TLOC : " + tloc);
+    }
 
-        Path path = Paths.get(directory);
-        List<Path> paths = findJavaTestFile(path, ".java");
-        for (Path file: paths){
-            String relativePath = file.toString().substring(directory.length());
-            System.out.println(relativePath+", "
-                    +file.getFileName()+", "
-                    +"tloc, tassert, tcmp");
-        }
-    }*/
-    public int calcul_tloc (String dir) {
+    public static int calcul_tloc (String dir) {
+        System.out.println(dir);
         int tloc = 0;
 
         try (BufferedReader file_reader = new BufferedReader(new FileReader(dir))) {
             boolean comment_line = false;
-            String file_line = file_reader.readLine();
+            String file_line;
 
-            while (file_line != null) {  
+            while ((file_line = file_reader.readLine()) != null) { 
                 file_line = file_line.trim();
 
                 if (file_line.isEmpty()) {
@@ -71,6 +62,7 @@ public class tloc {
             System.err.println("Error while reading file: " + e.getMessage());
             System.exit(1);
         }
+        System.out.println(tloc);
 
         return tloc;
     }
