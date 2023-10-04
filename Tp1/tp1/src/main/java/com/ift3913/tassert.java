@@ -3,7 +3,7 @@ package com.ift3913;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-/*TASSERT : nombre de assertions JUnit. Il doit juste sortir la valeur du TASSERT à la ligne de commandes*/
+/*TASSERT : nombre d'assertions JUnit. Il sort la valeur du TASSERT à la ligne de commandes*/
 public class tassert {
 
 
