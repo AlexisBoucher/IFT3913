@@ -24,7 +24,6 @@ public class tloc {
      * @return tloc:nombre de ligne de code excluant les commentaires
      */
     public static int calcul_tloc (String dir) {
-        System.out.println(dir);
         int tloc = 0;
 
         try (BufferedReader file_reader = new BufferedReader(new FileReader(dir))) {

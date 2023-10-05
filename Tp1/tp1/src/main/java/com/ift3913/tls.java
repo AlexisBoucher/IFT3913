@@ -24,9 +24,20 @@ public class tls {
         List<Path> paths = findJavaTestFile(path, ".java");
         for (Path file: paths){
             String relativePath = file.toString().substring(directory.length());
-            System.out.println(relativePath+", packet, "
+            int tlocNum = tloc.calcul_tloc(file.toString());
+            int tassertNum = tassert.calcul_tassert(file.toString());
+            String tcmpNum;
+            float Tcmp;
+            if(tassertNum!=0){
+                Tcmp = (float)tlocNum/(float) tassertNum;
+                tcmpNum = String.valueOf(Tcmp);}
+            else tcmpNum = "inf";
+            System.out.println(relativePath+","
+                    +getPackage(file)+", "
                     +file.getFileName()+", "
-                    + tloc.calcul_tloc(file.toString()) +", tassert, tcmp");
+                    +tlocNum+", "
+                    +tassertNum+", "
+                    +tcmpNum);
         }
 
     }
@@ -50,5 +61,17 @@ public class tls {
 
     }
 
+    public static String getPackage(Path path){
+        Path packageEnd = path.getParent();
+        Path packageStart = packageEnd;
+        while (!packageStart.getParent().endsWith("java")){
+            packageStart = packageStart.getParent();
+        }
+        packageStart = packageStart.getParent();
+        String packageName = packageEnd.toString().substring(packageStart.toString().length()+1);
+        packageName = packageName.replace("\\",".");
+        packageName = packageName.replace("/",".");
+        return packageName;
+    }
 
 }
