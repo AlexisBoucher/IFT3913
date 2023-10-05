@@ -24,9 +24,9 @@ public class tls {
         List<Path> paths = findJavaTestFile(path, ".java");
         for (Path file: paths){
             String relativePath = file.toString().substring(directory.length());
-            System.out.println(relativePath+", "
+            System.out.println(relativePath+", packet, "
                     +file.getFileName()+", "
-                    +"tloc, tassert, tcmp");
+                    + tloc.calcul_tloc(file.toString()) +", tassert, tcmp");
         }
 
     }
