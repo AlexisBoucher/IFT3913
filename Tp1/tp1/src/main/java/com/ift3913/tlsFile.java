@@ -52,11 +52,8 @@ public class tlsFile {
         return relativePath;
     }
 
-    public String getTcmp() {
-        if (Tassert!=0){
-            return String.valueOf(Tcmp);
-        }
-        else return "inf";
+    public Float getTcmp() {
+        return Tcmp;
     }
 
     public int getTassert() {

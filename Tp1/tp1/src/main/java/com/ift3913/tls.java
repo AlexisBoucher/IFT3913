@@ -61,7 +61,11 @@ public class tls {
             //recueil toute les infos desire
             for (Path file: paths) {
                 tlsFile tls_File = new tlsFile(file, directory);
-                tlsFiles.add(tls_File);
+
+                //verifie qu'il y ait au moin 1 assert sinon pas considere comme classe de test
+                if(tls_File.getTassert()!=0 ){
+                    tlsFiles.add(tls_File);
+                }
             }
             return tlsFiles;
     }

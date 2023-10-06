@@ -20,14 +20,17 @@ public class tropcomp {
         List<tlsFile> tlsFiles = tls.findJavaTestFile(directory);
 
         List<Integer> tlocs = new ArrayList<>();
-        List<String> tcmps = new ArrayList<>();
+        List<Float> tcmps = new ArrayList<>();
+
         for (tlsFile tlsFile:tlsFiles){
             tlocs.add(tlsFile.getTloc());
             tcmps.add(tlsFile.getTcmp());
         }
+        //classe tloc et tcmp en ordre decroissant
         tlocs.sort(Collections.reverseOrder());
         tcmps.sort(Collections.reverseOrder());
 
+        //print tloc et tcmp en ordre decroissant
         for(int tloc :tlocs){
             System.out.println(tloc+", "+tcmps.remove(0));
         }
