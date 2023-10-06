@@ -20,8 +20,8 @@ public class tls {
             System.exit(1);
         }
 
-        Path path = Paths.get(directory);
-        List<tlsFile> tlsFiles = findJavaTestFile(path, directory);
+
+        List<tlsFile> tlsFiles = findJavaTestFile(directory);
 
         //imprime les donnees
         for (tlsFile file: tlsFiles) {
@@ -35,8 +35,10 @@ public class tls {
     }
 
     //Fait une liste des fichiers test java
-    public static List<tlsFile> findJavaTestFile(Path path,String directory)
+    public static List<tlsFile> findJavaTestFile(String directory)
+
          throws IOException {
+            Path path = Paths.get(directory);
 
             //Chemin d'acces qui n'est pas a un dossier
             if (!Files.isDirectory(path)) {
