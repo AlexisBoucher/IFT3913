@@ -22,6 +22,7 @@ public class tlsFile {
         if (Tassert!=0){
             this.Tcmp= (float)Tloc /(float)Tassert;
         }
+        else this.Tcmp= 0;
         this.packet= findPackage(path);
     }
 

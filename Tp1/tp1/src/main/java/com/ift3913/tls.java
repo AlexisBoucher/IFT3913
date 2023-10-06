@@ -2,6 +2,9 @@
 package com.ift3913;
 
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -12,9 +15,21 @@ import java.util.stream.Stream;
 
 public class tls {
     public static void main(String[] args) throws IOException {
+        boolean saveInFile = false;
+        String csvFile = "";
         String directory = "";
+
         try {
-            directory = args[0];
+            //donne un fichier de sortie
+            if(Objects.equals(args[0], "-o")){
+                saveInFile = true;
+                csvFile = args[1];
+                directory = args[2];
+            }
+            //aucun fichier de sortie
+            else {
+                directory = args[0];
+            }
         } catch (ArrayIndexOutOfBoundsException ex) {
             System.out.println("One or more argument missing");
             System.exit(1);
@@ -24,14 +39,7 @@ public class tls {
         List<tlsFile> tlsFiles = findJavaTestFile(directory);
 
         //imprime les donnees
-        for (tlsFile file: tlsFiles) {
-            System.out.println(file.getRelativePath()+","
-                    +file.getPacket()+", "
-                    +file.getName()+", "
-                    +file.getTloc()+", "
-                    +file.getTassert()+", "
-                    +file.getTcmp());
-        }
+        saveData(tlsFiles,csvFile,saveInFile);
     }
 
     //Fait une liste des fichiers test java
@@ -68,6 +76,42 @@ public class tls {
                 }
             }
             return tlsFiles;
+    }
+
+    public static void saveData(List<tlsFile> tlsFiles, String csvFile, boolean saveInFile){
+        //imprime en ligne de commande
+        if(!saveInFile){
+            for (tlsFile file: tlsFiles) {
+
+                System.out.println(file.getRelativePath() + ","
+                        + file.getPacket() + ", "
+                        + file.getName() + ", "
+                        + file.getTloc() + ", "
+                        + file.getTassert() + ", "
+                        + file.getTcmp());
+
+            }
+        }
+
+        //enregistrer dans fichier csv
+        else{
+            try{
+                File file = new File(csvFile);
+                FileWriter output = new FileWriter(file);
+                BufferedWriter writer = new BufferedWriter(output);
+
+                for(tlsFile tlsFile : tlsFiles){
+                    writer.write(tlsFile.getRelativePath() + ","
+                            + tlsFile.getPacket() + ", "
+                            + tlsFile.getName() + ", "
+                            + tlsFile.getTloc() + ", "
+                            + tlsFile.getTassert() + ", "
+                            + tlsFile.getTcmp()+ "\n");
+                }
+                writer.close();
+            }
+            catch (Exception e){e.printStackTrace();}
+        }
     }
 
 
