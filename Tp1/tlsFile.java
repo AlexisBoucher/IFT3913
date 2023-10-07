@@ -12,7 +12,7 @@ public class tlsFile {
 
     //constructeur
     public tlsFile(Path path, String directory) {
-        this.relativePath= path.toString().substring(directory.length());
+        this.relativePath= "."+path.toString().substring(directory.length());
         this.name= path.getFileName();
         this.Tloc= tloc.calcul_tloc(path.toString());
         this.Tassert= tassert.calcul_tassert(path.toString());
