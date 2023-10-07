@@ -1,0 +1,16 @@
+TropComp est un outil utile pour identifier les tests de code Java trop complexes, mais une suite de test automatisé 
+et une évaluation humaine peuvent être nécéssaire.
+
+Etant donné que cet outil detecte 0 fichier jugé complexe sur une seuil de 1% et 5%, et 1 fichier jugé complexe sur 10%  
+cela pourrait indiquer que l'outil ne parvient pas à identifier de manière significative du code de test jugé trop complexe
+dans le projet JFreeChart.
+Les causes pourraient dépendre de la nature du projet: le code du projet JFreeChart pourrait être moins complexes, 
+les metriques utilisé par tcmp pourraient ne pas être un bon choix de metrique car plus tassert est grand plus le code
+est complexe, plus le tloc est grand plus le code tend à être complexe. Sachant que tcmp = tloc/tassert et donc on 
+divise un nombre qui plus il est grand plus il augmente le niveau de complexite par un autre nombre qui lui aussi 
+augmente le niveau de complexite plus il est grand. En somme  TropComp peut avoir des limitations dans ses méthodologies
+de détection de complexité qui ne sont pas idéales pour le projet JFreeChart.
+
+Pour améliorer tropcomp il serait essentiel de reviser les métriques de complexité utilisées, revoir le seuil car 
+un seuil de 1% et 5% peuvent être trop strict pour la complexité de ce projet, prendre en compte d'autres facteur et
+potentiellement le tester sur d'autres projets.

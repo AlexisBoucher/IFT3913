@@ -1,7 +1,4 @@
 //look in jfreechart directory and print all relatives path of java test file
-package com.ift3913;
-
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;

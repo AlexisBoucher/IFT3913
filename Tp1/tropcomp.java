@@ -1,5 +1,3 @@
-package com.ift3913;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
