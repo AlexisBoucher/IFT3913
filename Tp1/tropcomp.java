@@ -52,11 +52,11 @@ public class tropcomp {
         tcmps.sort(Collections.reverseOrder());
 
         //toute valeur superieur a ce nombre sera considere dans le top seuil%
-        int minSeuilTlocValue= tlocs.get(numberInTop);
-        float minSeuilTcmpValue= tcmps.get(numberInTop);
+        int minSeuilTlocValue= tlocs.get(numberInTop-1);
+        float minSeuilTcmpValue= tcmps.get(numberInTop-1);
 
         //enleve de la file tout les fichiers en bas ou egal au seuil tloc et tcmp
-        tlsFiles.removeIf(file -> file.getTloc() <= minSeuilTlocValue || file.getTcmp() <= minSeuilTcmpValue);
+        tlsFiles.removeIf(file -> file.getTloc() < minSeuilTlocValue || file.getTcmp() < minSeuilTcmpValue);
 
         //imprime les donnees si aucun fichier csv donne pour enregistrer les donnees
         tls.saveData(tlsFiles,csvFile,saveInFile);

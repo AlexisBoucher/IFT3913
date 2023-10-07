@@ -80,7 +80,7 @@ public class tls {
         if(!saveInFile){
             for (tlsFile file: tlsFiles) {
 
-                System.out.println(file.getRelativePath() + ","
+                System.out.println(file.getRelativePath() + ", "
                         + file.getPacket() + ", "
                         + file.getName() + ", "
                         + file.getTloc() + ", "
