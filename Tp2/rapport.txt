@@ -18,3 +18,34 @@ Q3 : Est-ce que les tests sont trop complexes?
 Q4 : Est-ce que les tests sont suffisamment documentés?
 
 Metriques:
+
+Question 1 :
+Tassert: Nous permettra de calculer le nombre d'assertion dans chaque fichier test,
+elle nous sera utile pour evaluer la quantité des tests effectué. Si TAssert est 
+relativement faible par rapport à la taille du projet, cela peut indiquer des 
+lacunes dans les tests, ce qui signifie qu'il pourrait y avoir des parties du code
+non couvertes par les tests.
+expliquer pourquoi tassert au lieu de tpc, 
+TCMP : 
+TPP : Nous allons collecter le nombre de test présent dans chaque package que nous, 
+avons, ce nombre nous servira à classer les packages par quantité. Un seuils  " "  pour 
+le nombre de test par package est fixé sur la base de la complexité du projet, tous package 
+en dessous du seuils sera classé non suffisamment testé. Une évaluation générale sera ainsi
+faite sur le projet à partir de ces résultats.
+PMNT (pourcentage de méthodes non testés) : 
+
+Question2 : 
+AGE (age d’un fichier): nous permettra de déterminer si nos fichiers tests sont plus vieux 
+que les fichiers des classes qu'ils testent. Un seuil de "" est fixé, si le pourcentage de fichier tests plus vieux
+est en dessous du seuil cela signifiera que la majorité des tests ne sont pas à jour.
+NCHC may be: ,
+PMNT (pourcentage de méthodes non testés),
+
+Question3: 
+Ratio taille code / taille test : 
+CC : 
+NCLOC :
+
+Question4: 
+DC (densité de commentaires) :
+CLOC :
