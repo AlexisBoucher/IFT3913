@@ -20,32 +20,82 @@ Q4 : Est-ce que les tests sont suffisamment documentés?
 Metriques:
 
 Question 1 :
-Tassert: Nous permettra de calculer le nombre d'assertion dans chaque fichier test,
+
+Tassert: 
+Nous permettra de calculer le nombre d'assertion dans chaque fichier test,
 elle nous sera utile pour evaluer la quantité des tests effectué. Si TAssert est 
 relativement faible par rapport à la taille du projet, cela peut indiquer des 
 lacunes dans les tests, ce qui signifie qu'il pourrait y avoir des parties du code
 non couvertes par les tests.
 expliquer pourquoi tassert au lieu de tpc, 
-TCMP : 
-TPP : Nous allons collecter le nombre de test présent dans chaque package que nous, 
-avons, ce nombre nous servira à classer les packages par quantité. Un seuils  " "  pour 
-le nombre de test par package est fixé sur la base de la complexité du projet, tous package 
-en dessous du seuils sera classé non suffisamment testé. Une évaluation générale sera ainsi
+
+TPC (tests par classe): 
+Sera implémenté dans TPP
+
+TPP((tests par package)) :
+Nous allons collecter le nombre de test présent dans chaque package que nous, 
+avons, ce nombre nous servira à classer les packages par quantité. Un seuil  " "  pour 
+le nombre de test par package est fixé sur la base de la complexité du projet, si le TPP
+est en dessous de seuil% dans le package il sera classé non suffisamment testé. Une évaluation générale sera ainsi
 faite sur le projet à partir de ces résultats.
+
 PMNT (pourcentage de méthodes non testés) : 
+Mesure le pourcentage de méthodes non testées par rapport au nombre total de méthodes dans 
+chaque package, nous allons ensuite comparer le PMNT de chaque package par rapport au TPP de chaque 
+package. Si un package a un pourcentage élevé de méthodes non testées par rapport à son TPP,
+cela pourrait indiquer que ce package contient des parties non testées ou insuffisamment testées.
+Un seuil de "" est fixé, si plus de seuil% de nos méthodes sont non testés cela signifiera que le package 
+concerné a besoin d'amélioration sur la couverture de ses tests. 
+
 
 Question2 : 
-AGE (age d’un fichier): nous permettra de déterminer si nos fichiers tests sont plus vieux 
+
+AGE (age d'un fichier): 
+Nous permettra de déterminer si nos fichiers tests sont plus vieux 
 que les fichiers des classes qu'ils testent. Un seuil de "" est fixé, si le pourcentage de fichier tests plus vieux
 est en dessous du seuil cela signifiera que la majorité des tests ne sont pas à jour.
-NCHC may be: ,
-PMNT (pourcentage de méthodes non testés),
+
+NCH : 
+Calcule le nombre de commits dans l historique d'une classe, pour chaque classe de test cette metrique compte
+le nombre de commits associés à cette classe depuis le début de son historique. Nous comparerons les valeurs de NCH 
+des classes de tests à celles du reste du code. Si le NCH des classes de tests est significativement inférieur à celui 
+du code source principal, cela peut indiquer que les tests ne sont pas mis à jour aussi fréquemment que le code source.
+
+PMNT (pourcentage de méthodes non testés) : 
+//"pas claire pour moi comment l'utiliser ici"
 
 Question3: 
 Ratio taille code / taille test : 
-CC : 
-NCLOC :
+Mesure la taille du code de test en comptant le nombre total de lignes de code dans les classes tests. On mesurera la taille du code source
+en comptant le nombre total de lignes de code dans le code que nous testons. On fera ensuite le ration Ratio taille code / taille test.
+Des seuils appropriés en fonction de JFreeChart sont fixés.Un ratio élevé peut indiquer que les tests sont proportionnellement plus complexes
+que le code de la classe testée. Un ratio faible, indiquera que les tests sont relativement plus simples que le code source.
+
+NCLOC : 
+Calcule la métrique de taille NCLOC nombre de lignes de code non-vides qui
+ne sont pas de commentaires. Ce nombre sera utilisé dans TCMP
+
+TCMP : 
+Utilise les programmes TLOC et TASSERT pour suggérer des classes qui
+sont suspectes de contenir du code test qui est trop complexe. Tropcomp prendra en
+entrée le chemin principal d'un projet java qui suit les normes d'organisation de Maven
+et un seuil. La suggestion à la sortie sera composée par les lignes des classes suspectes,
+sous le format de tls. Une classe est suspecte si ses métriques TLOC et
+TCMP(=NCLOC/TASSERT) sont tous les deux dans les <seuil>% supérieures de toutes les classes
+de test du projet.(TP1)
 
 Question4: 
-DC (densité de commentaires) :
-CLOC :
+LOC : Nombre total de ligne de code sera utilisé dans le calcul de densité de commentaires.
+CLOC : Donnera le nombre de lignes de commentaires et sera utilisé pour trouver la densite des commentaires.
+DC (densité de commentaires) : Un nombre de commentaires important dans une classe test peut être indicateur 
+de documetation, mais cette metrique ne suffit pas forcement. 
+DC = (CLOC / LOC) (* 100 pour le pourcentage)
+Nous definissons le seuil "" , une DC élevée( au dessus du seuil ) est un signe que les tests sont potentiellement
+bien documentés, tandis qu'une DC faible(en dessous) peut indiquer que les tests nécessitent une amélioration de la
+documentation.
+
+
+"Reste a faire :
+- ajouter la facon d executer chaque metrique dans la documentation.
+- Fixer les seuils (sera peut etre plus pertinent de fixer quand on testera)
+-Ameliorer et approfondir l analyse pendant l implementation"
