@@ -16,27 +16,24 @@ import java.util.stream.Stream;
 import java.time.Clock;
 import java.time.Duration;
 
-//classe qui imprime toute les classe test java a risque d'etre dans le seuil superieur tloc et tcmp
+//classe qui imprime l'age moyen des fichiers du programme et des fichiers tests ainsi que l'ecart d'age.
 public class age {
     public static void main(String[] args) throws IOException {
 
         boolean saveInFile = false;
-        String csvFile = "";
+        String fileName = "";
         String directory = "";
-        float seuil = 0;
 
         try {
             //donne un fichier de sortie
             if(Objects.equals(args[0], "-o")){
                 saveInFile = true;
-                csvFile = args[1];
+                fileName = args[1];
                 directory = args[2];
-                seuil = Float.parseFloat(args[3]);
             }
             //aucun fichier de sortie
             else {
                 directory = args[0];
-                seuil = Float.parseFloat(args[1]);
             }
 
         } catch (ArrayIndexOutOfBoundsException ex) {
@@ -50,7 +47,7 @@ public class age {
         long testAgeTotal = 0;
         java.time.Clock clock =  Clock.systemUTC();
 
-        
+
         for(Path path : javaFilePath.get(0)){
             FileTime t = Files.getLastModifiedTime(path);
             Instant fileInstant = t.toInstant();
@@ -72,7 +69,9 @@ public class age {
 
         float ageMoyen = ageTotal/javaFilePath.get(0).size();
         float testAgeMoyen = testAgeTotal/javaFilePath.get(1).size();
-        System.out.println("Age moyen : "+ageMoyen+"    Age test moyen : "+testAgeMoyen);
+
+
+        saveData(ageMoyen, testAgeMoyen, fileName, saveInFile);
 
     }
 
@@ -128,5 +127,42 @@ public class age {
             javaFile.add(0, paths);
             javaFile.add(1, testPaths);
             return javaFile;
+    }
+
+    public static void saveData(float ageMoyen, float testAgeMoyen, String fileName, boolean saveInFile){
+        float ecartAge=ageMoyen-testAgeMoyen;
+        //imprime en ligne de commande
+        if(!saveInFile){
+            System.out.println("Age en moyenne des fichiers du programme: "+ageMoyen+" jours\nAge en moyenne des fichiers tests: "+testAgeMoyen+" jours");
+            if(ageMoyen >= testAgeMoyen){
+                System.out.println("L'age moyen des test sont plus jeunes de "+ecartAge+"jour");
+            }
+            else{
+                ecartAge*=-1;
+                System.out.println("L'age moyen des test sont plus vieux de "+ecartAge+"jour");
+            }
+        }
+
+        //enregistrer dans fichier txt
+        else{
+            try{
+                File file = new File(fileName);
+                FileWriter output = new FileWriter(file);
+                BufferedWriter writer = new BufferedWriter(output);
+
+                
+                writer.write("Age en moyenne des fichiers du programme: "+ageMoyen+" jours\nAge en moyenne des fichiers tests: "+testAgeMoyen+" jours\n");
+
+                if(ageMoyen >= testAgeMoyen){
+                writer.write("L'age moyen des test sont plus jeunes de "+ecartAge+"jour");
+                }
+                else{
+                    ecartAge*=-1;
+                    writer.write("L'age moyen des test sont plus vieux de "+ecartAge+"jour");
+                }
+                writer.close();
+            }
+            catch (Exception e){e.printStackTrace();}
+        }
     }
 }

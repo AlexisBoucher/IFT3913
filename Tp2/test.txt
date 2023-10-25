@@ -1,0 +1,3 @@
+Age en moyenne des fichiers du programme : 289.0 jours
+Age en moyenne des fichiers tests: 289.0 jours
+L'age moyen des test sont plus jeunes de 0.0jour
