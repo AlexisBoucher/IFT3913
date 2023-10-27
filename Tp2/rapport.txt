@@ -51,15 +51,10 @@ Question2 :
 
 AGE (age d'un fichier): 
 Nous permettra de déterminer si nos fichiers tests sont plus vieux 
-<<<<<<< HEAD
 que les fichiers des classes qu'ils testent. Un seuil d'un certain nombre de jour
 est fixé, si la moyenne des fichiers tests sont en dessous du seuil cela signifiera 
 que la majorité des tests sont plus vieux que les fichier qu'ils tests, et donc ne 
 seront pas considéré à jour. Nous ferons un implémentation de age pour mesurer celui-ci.
-=======
-que les fichiers des classes qu'ils testent. Nous calculerons l'age moyen des
-fichiers et l'age moyen des fichiers tests, si cet age moyen est plus vieux de "x" jours alors test non à jour.
->>>>>>> 2f4874691ab411f9d8743508d77ad90551f77887
 
 NCH : 
 Calcule le nombre de commits dans l'historique d'une classe, pour chaque classe de test 
@@ -69,17 +64,10 @@ reste du code. Si le NCH des classes de tests est significativement inférieur �
 du code source principal, cela peut indiquer que les tests ne sont pas mis à jour aussi
 fréquemment que le code source, ce qui pourrait indiquer que le code n'est pas à jour.
 
-<<<<<<< HEAD
 PCC (Pourcentage code couvert):  
 Mesure le pourcentage de ligne de code non-testé. Un pourcentage élevé nous indiquera 
 que beaucoup de code n'est pas testé, ce qui pourrait suggérer un ajout de lignes de code
 sans ajout de tests pour les vérifiés, ce qui peut nous indiquer que les tests ne sont plus à jours
-=======
-PMNT (pourcentage de méthodes non testés) : 
-Un pourcentage de méthodes non testés élevé signifie ajout probable de methode sans ajout des tests de ces methodes dans les
-classes tests equivalentes. Si le pourcentage se retrouve au dessus de "%" nous pourons déduire que les tests ne sont majoritairement
-pas à jour.
->>>>>>> 2f4874691ab411f9d8743508d77ad90551f77887
 
 Question3: 
 
@@ -92,15 +80,12 @@ indiquer que les tests sont proportionnellement plus complexes que le code de la
 testée. Un ratio élevé, indiquera que les tests sont relativement plus simples que le code source.
 Nous utiliserons l'application cloc pour le mesurer. 
 
-<<<<<<< HEAD
 NCLOC : 
 Calcule le nombre de lignes de code non-vides qui ne sont pas des commentaires.
 Un NCLOC élevé dans les fichiers tests par rapport à la taille de JFreeChart
 pourrait indiquer que les tests sont trop complexes. Nous utiliserons l'application 
 cloc pour le mesurer. 
 
-=======
->>>>>>> 2f4874691ab411f9d8743508d77ad90551f77887
 TCMP : 
 Mesure ratio entre le nombre de ligne de code et le nombre de tests dans une classe (TLOC/TASSERT).
 Nous évalurons le TCMP moyen de toutes les classe de test de jfreechart. Un ratio élevé
@@ -108,7 +93,6 @@ nous indiquera qu'en moyenne les tests sont trop complexe et un ratio faible nou
 les tests ne sont pas trop complexe. Nous modifierons le programme tls pour obtenir TCMP moyen.
 
 Question4: 
-<<<<<<< HEAD
 
 CLOC :
 Donnera le nombre de lignes de commentaires. Un seuil sera fixé et si le nombre
@@ -121,24 +105,8 @@ de documentation, mais cette métrique ne suffit pas forcement.
 Nous fixerons un seuil, une DC élevée est un signe que les tests sont potentiellement
 bien documentés, tandis qu'une DC faible peut indiquer que les tests nécessitent une 
 amélioration de la documentation. Cette métrique sera calculer à l'aide du programme cloc.
-=======
-LOC : Nombre total de ligne de code sera utilisé dans le calcul de densité de commentaires.
-CLOC : Donnera le nombre de lignes de commentaires et sera utilisé pour trouver la densite des commentaires.
-Un seuil de "" est assigné à cloc comme autre metrique.
-DC (densité de commentaires) : Un nombre de commentaires important dans une classe test peut être indicateur 
-de documetation, mais cette metrique ne suffit pas forcement. 
-DC = (CLOC / LOC) (* 100 pour le pourcentage)
-Nous definissons le seuil "" , une DC élevée( au dessus du seuil ) est un signe que les tests sont potentiellement
-bien documentés, tandis qu'une DC faible(en dessous) peut indiquer que les tests nécessitent une amélioration de la
-documentation.
->>>>>>> 2f4874691ab411f9d8743508d77ad90551f77887
-
 
 "Reste a faire :
 - ajouter la facon d executer chaque metrique dans la documentation.
 - Fixer les seuils (sera peut etre plus pertinent de fixer quand on testera)
 -Ameliorer et approfondir l analyse pendant l implementation"
-
-
-Où trouver les metriques :
-Toutes les métriques sont dans le fichier "métriques"
