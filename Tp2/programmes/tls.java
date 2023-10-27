@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class tls {
+    private static Map<String, Integer> testsPerPackage = new HashMap<>();
     public static void main(String[] args) throws IOException {
         boolean saveInFile = false;
         String csvFile = "";
@@ -32,11 +33,16 @@ public class tls {
             System.exit(1);
         }
 
-
+        Map<String, Integer> testsPerPackage = new HashMap<>();
         List<tlsFile> tlsFiles = findJavaTestFile(directory);
 
         //imprime les donnees
         saveData(tlsFiles,csvFile,saveInFile);
+
+        // Imprime le nombre de tests par package
+        for (Map.Entry<String, Integer> entry : testsPerPackage.entrySet()) {
+            System.out.println("Package: " + entry.getKey() + ", Nombre de Tests: " + entry.getValue());
+        }
     }
 
     //Fait une liste des fichiers test java
@@ -57,7 +63,7 @@ public class tls {
             //fichiers java contenant le mot test
             try (Stream<Path> walk = Files.walk(path)) {
                 paths = walk
-                        .filter(Files::isRegularFile)   // is a file
+                        .filter(Files::isRegularFile) // is a file
                         .filter(p -> p.getFileName().toString().endsWith(".java"))
                         .filter(p -> p.getFileName().toString().toLowerCase().contains("test"))
                         .collect(Collectors.toList());
@@ -67,9 +73,13 @@ public class tls {
             for (Path file: paths) {
                 tlsFile tls_File = new tlsFile(file, directory);
 
-                //verifie qu'il y ait au moin 1 assert sinon pas considere comme classe de test
+                //verifie qu'il y ait au moins 1 assert sinon pas considere comme classe de test
                 if(tls_File.getTassert()!=0 ){
                     tlsFiles.add(tls_File);
+
+                // Compte le nombre de tests par package
+                String packageName = tls_File.getPacket();
+                testsPerPackage.put(packageName, testsPerPackage.getOrDefault(packageName, 0) + 1);
                 }
             }
             return tlsFiles;
@@ -104,7 +114,8 @@ public class tls {
                 File file = new File(csvFile);
                 FileWriter output = new FileWriter(file);
                 BufferedWriter writer = new BufferedWriter(output);
-
+                
+                writer.write("Relative Path, Package, File Name, TLOC, TASSERT, TCMP, TPP\n");
                 
                 for(tlsFile tlsFile : tlsFiles){
                     writer.write(tlsFile.getRelativePath() + ","
@@ -112,7 +123,8 @@ public class tls {
                             + tlsFile.getName() + ", "
                             + tlsFile.getTloc() + ", "
                             + tlsFile.getTassert() + ", "
-                            + tlsFile.getTcmp()+ "\n");
+                            + tlsFile.getTcmp() + ", "
+                            + testsPerPackage.getOrDefault(tlsFile.getPacket(), 0) + "\n");
                     tlocGlobal += tlsFile.getTloc();
                     tassertGlobal += tlsFile.getTassert();
                     tcmpGlobal += tlsFile.getTcmp();    
@@ -120,6 +132,10 @@ public class tls {
                 tassertGlobal = tassertGlobal/tlsFiles.size();
                 tcmpGlobal = tcmpGlobal/tlsFiles.size();
                 writer.write("Total, "+tlocGlobal+", "+tassertGlobal+", "+tcmpGlobal);
+               /*  writer.write("\nPackage, Nombre de Tests\n");
+                for (Map.Entry<String, Integer> entry : testsPerPackage.entrySet()) {
+                writer.write(entry.getKey() + ", " + entry.getValue() + "\n");
+                }*/
                 writer.close();
             }
             catch (Exception e){e.printStackTrace();}

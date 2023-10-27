@@ -52,8 +52,8 @@ Question2 :
 
 AGE (age d'un fichier): 
 Nous permettra de déterminer si nos fichiers tests sont plus vieux 
-que les fichiers des classes qu'ils testent. Un seuil de "" est fixé, si le pourcentage de fichier tests plus vieux
-est en dessous du seuil cela signifiera que la majorité des tests ne sont pas à jour.
+que les fichiers des classes qu'ils testent. Nous calculerons l'age moyen des
+fichiers et l'age moyen des fichiers tests, si cet age moyen est plus vieux de "x" jours alors test non à jour.
 
 NCH : 
 Calcule le nombre de commits dans l historique d'une classe, pour chaque classe de test cette metrique compte
@@ -62,7 +62,9 @@ des classes de tests à celles du reste du code. Si le NCH des classes de tests 
 du code source principal, cela peut indiquer que les tests ne sont pas mis à jour aussi fréquemment que le code source.
 
 PMNT (pourcentage de méthodes non testés) : 
-//"pas claire pour moi comment l'utiliser ici"
+Un pourcentage de méthodes non testés élevé signifie ajout probable de methode sans ajout des tests de ces methodes dans les
+classes tests equivalentes. Si le pourcentage se retrouve au dessus de "%" nous pourons déduire que les tests ne sont majoritairement
+pas à jour.
 
 Question3: 
 Ratio taille code / taille test : 
@@ -70,10 +72,6 @@ Mesure la taille du code de test en comptant le nombre total de lignes de code d
 en comptant le nombre total de lignes de code dans le code que nous testons. On fera ensuite le ration Ratio taille code / taille test.
 Des seuils appropriés en fonction de JFreeChart sont fixés.Un ratio élevé peut indiquer que les tests sont proportionnellement plus complexes
 que le code de la classe testée. Un ratio faible, indiquera que les tests sont relativement plus simples que le code source.
-
-NCLOC : 
-Calcule la métrique de taille NCLOC nombre de lignes de code non-vides qui
-ne sont pas de commentaires. Ce nombre sera utilisé dans TCMP
 
 TCMP : 
 Utilise les programmes TLOC et TASSERT pour suggérer des classes qui
@@ -87,6 +85,7 @@ de test du projet.(TP1)
 Question4: 
 LOC : Nombre total de ligne de code sera utilisé dans le calcul de densité de commentaires.
 CLOC : Donnera le nombre de lignes de commentaires et sera utilisé pour trouver la densite des commentaires.
+Un seuil de "" est assigné à cloc comme autre metrique.
 DC (densité de commentaires) : Un nombre de commentaires important dans une classe test peut être indicateur 
 de documetation, mais cette metrique ne suffit pas forcement. 
 DC = (CLOC / LOC) (* 100 pour le pourcentage)
@@ -99,3 +98,7 @@ documentation.
 - ajouter la facon d executer chaque metrique dans la documentation.
 - Fixer les seuils (sera peut etre plus pertinent de fixer quand on testera)
 -Ameliorer et approfondir l analyse pendant l implementation"
+
+
+Où trouver les metriques :
+Toutes les métriques sont dans le fichier "métriques"
