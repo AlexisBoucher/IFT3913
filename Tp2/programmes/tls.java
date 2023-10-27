@@ -99,7 +99,8 @@ public class tls {
                         + file.getName() + ", "
                         + file.getTloc() + ", "
                         + file.getTassert() + ", "
-                        + file.getTcmp());
+                        + tlsFile.getTcmp() + ", "
+                        + testsPerPackage.getOrDefault(tlsFile.getPacket(), 0) + "\n");
                 tlocGlobal += file.getTloc();
                 tassertGlobal += file.getTassert();
                 tcmpGlobal += file.getTcmp();         
