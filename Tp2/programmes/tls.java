@@ -117,6 +117,7 @@ public class tls {
                     tassertGlobal += tlsFile.getTassert();
                     tcmpGlobal += tlsFile.getTcmp();    
                 }
+                tassertGlobal = tassertGlobal/tlsFiles.size();
                 tcmpGlobal = tcmpGlobal/tlsFiles.size();
                 writer.write("Total, "+tlocGlobal+", "+tassertGlobal+", "+tcmpGlobal);
                 writer.close();

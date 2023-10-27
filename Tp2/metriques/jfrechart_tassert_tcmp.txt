@@ -346,4 +346,4 @@
 .\src\test\java\org\jfree\data\xy\YIntervalSeriesTest.java,org.jfree.data.xy, YIntervalSeriesTest.java, 158, 47, 3.3617022
 .\src\test\java\org\jfree\data\xy\YIntervalTest.java,org.jfree.data.xy, YIntervalTest.java, 35, 9, 3.8888888
 .\src\test\java\org\jfree\data\xy\YWithXIntervalTest.java,org.jfree.data.xy, YWithXIntervalTest.java, 35, 9, 3.8888888
-Total, 39771, 9609, 5.294361
+Total, 39771, 27, 5.294361
