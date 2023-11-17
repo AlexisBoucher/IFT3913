@@ -7,3 +7,4 @@ https://github.com/AlexisBoucher/IFT3913
 
 - Language utilisé : R
 - IDE : RStudio
+- Excel
