@@ -62,7 +62,16 @@ subset_data <- subset(data_jfreechart, TASSERT <= 20  )
 write.table(subset_data, file = "~/Downloads/IFT3913-main 3/Tp3/classes_tassert_inferieur_egale_20", sep = ",", row.names = FALSE)
 
 
+
+
 #Enregistrement fichier
 subset1_data <- subset(data_jfreechart, TASSERT > 20  )
 write.table(subset1_data, file = "~/Downloads/IFT3913-main 3/Tp3/classes_tassert_sup_20", sep = ",", row.names = FALSE)
 
+
+
+
+summary(classes_moins_egale_a_20_assertions$TLOC)
+summary(classes_plus_de_20_assertions$TLOC)
+summary(classes_moins_egale_a_20_assertions$WMC)
+summary(classes_plus_de_20_assertions$WMC)
