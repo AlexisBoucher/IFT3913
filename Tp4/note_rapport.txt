@@ -1,4 +1,4 @@
-Question 1 : Boite noir
+Question 1 : Boite noire
 A-Partition du domaine des entrées en classes d’équivalence:
 Partitionnement sur la specification il doit accepter des montants dans l intervalle suivant [0, 1 000 000]:
 Classes d'équivalence:
@@ -18,7 +18,7 @@ Jeu de test : T= {USD, GNF}
 Hypothèses:
 Pour les montants en dehors de l'intervalle [0, 1 000 000] et pour des devises differentes de celles specifiées,
 le code peut lever une exception ou en renvoyer un résultat non défini.
-Il peut aussi specifier à l'utilisateur par des logs que les entrées ne sont pas correct.
+Il peut aussi specifier à l'utilisateur par des logs que les entrées ne respectent pas la spécification.
 
 
 B- Analyse des valeur frontiere
