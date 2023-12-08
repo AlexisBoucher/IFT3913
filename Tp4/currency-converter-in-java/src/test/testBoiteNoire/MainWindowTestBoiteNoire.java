@@ -62,7 +62,7 @@ public class MainWindowTestBoiteNoire {
     //Test d'un montant superieur à 1 000 000
     @Test(expected = OverLimitException.class)
 	public void Test_USDtoCAD_frontiere_over_10000() throws ParseException, OverLimitException  {
-	        double convert = MainWindow.convert("USD", "EUR", currencies, 1000060.0);
+	        double convert = MainWindow.convert("US Dollar", "Euro", currencies, 1000060.0);
 	        OverLimitExceptionValue(1000060.0);
 	}
 
@@ -70,8 +70,8 @@ public class MainWindowTestBoiteNoire {
     @Test
     public void testConvertUSDtoEUR() {
         double amount = 0;
-        double converted = MainWindow.convert("USD", "EUR", currencies, amount);
-        //Taux de change
+        double converted = MainWindow.convert("US Dollar", "Euro", currencies, amount);
+         //Taux de chang reel (sans considerer celui du converter)
         double expectedEURRate = 0.93;
         double expectedUSDRate = 1.073;
 
@@ -86,6 +86,7 @@ public class MainWindowTestBoiteNoire {
     public void testConvertValidAmount() {
         double  amount = 250000.0;
         double result = MainWindow.convert("US Dollar", "Euro", currencies, amount);
+        //Taux de change reel (sans considerer celui du converter)
         double expectedEURRate = 0.93;
         double expectedAmount = amount * (expectedEURRate);
         assertEquals(expectedAmount, result, 0.001);
@@ -103,12 +104,13 @@ public class MainWindowTestBoiteNoire {
     // Analyse des valeurs frontières
     @Test
     public void testConvertZeroAmount() {
-        double amount = MainWindow.convert("USD", "EUR", currencies, 0.0);
+        double amount = MainWindow.convert("US Dollar", "Euro", currencies, 0.0);
         assertEquals(0.0, amount, 0.001);
     }
 
     @Test
     public void testConvertMaxAmount() {
+         //Taux de change reel (sans considerer celui du converter)
         double expectedEURRate = 0.93;
         double amount = 1000000.0;
         double convert = MainWindow.convert("Swiss Franc", "Euro", currencies, amount);
