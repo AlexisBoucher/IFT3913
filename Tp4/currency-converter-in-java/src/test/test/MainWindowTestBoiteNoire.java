@@ -28,7 +28,7 @@ class OverLimitException extends Exception {
 	}	
 }
 
-public class MainWindowBoiteNoire {
+public class MainWindowTestBoiteNoire {
 
    private ArrayList<Currency> currencies;
 
