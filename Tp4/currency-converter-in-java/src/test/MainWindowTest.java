@@ -1,4 +1,4 @@
-package test;
+
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -28,7 +28,6 @@ class OverLimitException extends Exception {
 		m = m1;
 	}	
 }
- 
 
 public class MainWindowTest {
 
