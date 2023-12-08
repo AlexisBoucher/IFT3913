@@ -1,11 +1,10 @@
-
+package test;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 import currencyConverter.Currency;
 import currencyConverter.MainWindow;
 import java.util.ArrayList;
-import java.util.Map;
 
 import org.junit.Before;
 

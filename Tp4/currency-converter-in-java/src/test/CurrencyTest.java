@@ -1,4 +1,4 @@
-
+package test;
 
 import static org.junit.Assert.assertEquals;
 
@@ -7,7 +7,7 @@ import org.junit.Test;
 import currencyConverter.Currency;
 
 public class CurrencyTest {
-    
+
     //Test sur montant positif et taux positif
     @Test
     public void testPositiveAmount() {
