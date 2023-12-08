@@ -8,11 +8,13 @@ import currencyConverter.Currency;
 
 public class CurrencyTest {
     
+    //Test sur montant positif et taux positif
     @Test
     public void testPositiveAmount() {
         double convert = Currency.convert(200.0, 1.5);
         assertEquals(300.0, convert, 0.001);
     }
+     //Test sur montant négatif 
     @Test
     public void testNegativeAmount() {
         // En assumant que la methode retourne null
@@ -31,6 +33,7 @@ public class CurrencyTest {
         double result = Currency.convert(200.0, 0.0);
         assertEquals(0.0, result, 0.001);
     }
+    //test sur valeur limite
     @Test
     public void testBoundaryValues() {
         // 1 car zero est déjà fait 
