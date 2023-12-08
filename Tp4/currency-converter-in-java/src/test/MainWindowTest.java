@@ -64,26 +64,21 @@ public class MainWindowTest {
 	        double convert = MainWindow.convert("USD", "CAD", currencies, 1000060.0);
 	        OverLimitExceptionValue(1000060.0);
 	}
-    //Test sur des devises faisant partir de la specification
-   /* @Test
-    public void testValideUSDtoEUR() throws ParseException {
-        double input = MainWindow.convert("USD", "EUR", currencies, 250000.0);
-        assertEquals(231578.75, input,0);
-    } */
 
     //Test sur des devises faisant partir de la specification
     @Test
     public void testConvertUSDtoEUR() {
         double amount = 0;
-        double convertedAmount = MainWindow.convert("USD", "EUR", currencies, amount);
+        double converted = MainWindow.convert("USD", "EUR", currencies, amount);
         //Taux de change choisi
         double expectedEURRate = 0.93;
         double expectedUSDRate = 1.08;
 
         assertTrue("Amount should be between 0 and 10000",amount >= 0 && amount <= 1000000);
         double expectedAmount = amount * (expectedEURRate / expectedUSDRate);
-        assertEquals(expectedAmount, convertedAmount, 0.0001);
+        assertEquals(expectedAmount, converted, 0.0001);
     }
+    
 
 
 
