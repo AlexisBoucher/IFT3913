@@ -92,15 +92,22 @@ public class MainWindowTestBoiteNoire {
         assertEquals(expectedAmount, result, 0.001);
     }
 
-    // Devise différente de la specification
+    // Autre devise de la specification
+    @Test
+    public void testConvertOtherCurrency() {
+        double expectedCADRate = 0.89;
+        double  amount = 500.0;
+        double result = MainWindow.convert("Australian Dollar", "Canadian Dollar", currencies, amount);
+        double expectedAmount = amount * (expectedCADRate);
+        assertEquals(expectedAmount, result, 0.001);
+    }
+    //Devise invalide de la specification
     @Test
     public void testConvertInvalidCurrency() {
         double  amount = 500.0;
-        double result = MainWindow.convert("Japanese Yen", "Guinean Franc", currencies, amount);
-        //Nous nous attendons à zéro car la conversion ne devrait pas fonctionner
-        assertEquals(0.0, result, 0.001);
+        double result = MainWindow.convert("US Dollar", "Guinean Franc", currencies, amount);
+        assertEquals(0, result, 0.001);
     }
-
     // Analyse des valeurs frontières
     @Test
     public void testConvertZeroAmount() {
@@ -111,7 +118,7 @@ public class MainWindowTestBoiteNoire {
     @Test
     public void testConvertMaxAmount() {
          //Taux de change reel (sans considerer celui du converter)
-        double expectedEURRate = 0.93;
+        double expectedEURRate = 1.05;
         double amount = 1000000.0;
         double convert = MainWindow.convert("Swiss Franc", "Euro", currencies, amount);
         double expectedAmount = amount * (expectedEURRate);
